@@ -15,8 +15,7 @@ const email = 'info@absoluteranking.com';
 // Configurable via VITE_CONTACT_API_URL (see .env.example) so staging/production can
 // point at different URLs without touching code. Falls back to where contact.php will
 // actually live once deployed: alongside this page's build output on the live domain.
-const CONTACT_API_URL =
-    (import.meta.env.VITE_CONTACT_API_URL as string | undefined) || 'https://absoluteranking.com/ppc/services/google-ads-management/contact.php';
+const CONTACT_API_URL = (import.meta.env.VITE_CONTACT_API_URL as string | undefined) || 'https://absoluteranking.com/ppc/services/google-ads-management/contact.php';
 
 type LeadFormValues = {
     name: string;
@@ -337,7 +336,7 @@ function App() {
 
     return (
         <div className="site-shell" id="top">
-            <div className="top-strip"><span>Google Ads & PPC management for ambitious businesses</span><a href={`tel:${phoneHref}`}>Talk to a specialist <ArrowUpRight size={13} /></a></div>
+            <div className="top-strip"><span>Google Ads & PPC management for ambitious businesses</span><a href={whatsappLink} target='_blank'>Talk to a specialist <ArrowUpRight size={13} /></a></div>
             <header className="site-header">
                 <Logo />
                 <button className="menu-toggle" aria-label="Toggle menu" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button>
@@ -357,7 +356,7 @@ function App() {
                         <div className="eyebrow"><span className="eyebrow-dot" /> GOOGLE ADS & PPC MANAGEMENT</div>
                         <h1>Turn search intent into <em>real growth.</em></h1>
                         <p className="hero-lede">Professionally managed Google Ads campaigns that attract high-intent customers, create quality leads and make every click work harder for your business.</p>
-                        <div className="hero-actions"><a className="button button-primary" href="#contact">Get free consultation <ArrowUpRight size={17} /></a><a className="button button-outline" href={`tel:${phoneHref}`}><Phone size={16} /> Call {phone}</a></div>
+                        <div className="hero-actions"><a className="button button-primary" href="#contact">Get free consultation <ArrowUpRight size={17} /></a><a className="button button-outline" href={whatsappLink} target='_blank'>{whatsappIcon} Call {phone}</a></div>
                         <div className="trust-row"><span><CheckCircle2 size={16} /> Data-led strategy</span><span><CheckCircle2 size={16} /> Transparent reporting</span><span><CheckCircle2 size={16} /> ROI-minded execution</span></div>
                     </div>
                     <div className="hero-visual">
@@ -393,10 +392,10 @@ function App() {
 
                 <section className="section faq-section" id="faq"><div className="section-heading"><span className="eyebrow">GOOD QUESTIONS</span><h2>Everything you need<br />to know.</h2><p>Still curious? Our specialists are only a call away.</p><a className="text-button" href={`mailto:${email}`}>Ask us directly <ArrowRight size={16} /></a></div><div className="faq-list">{faqs.map(([question, answer], index) => <div className={`faq-item ${openFaq === index ? 'faq-open' : ''}`} key={question}><button onClick={() => setOpenFaq(openFaq === index ? -1 : index)}><span>{question}</span><ChevronDown size={18} /></button>{openFaq === index && <p>{answer}</p>}</div>)}</div></section>
 
-                <section className="contact-section" id="contact"><div className="contact-copy"><span className="eyebrow light-eyebrow">READY WHEN YOU ARE</span><h2>Let&apos;s put your<br /><em>next lead</em> in motion.</h2><p>Tell us where you want to go. We&apos;ll help you map the smartest route there.</p><div className="contact-details"><a href={`tel:${phoneHref}`}><Phone size={17} /> {phone}</a><a href={`mailto:${email}`}><Mail size={17} /> {email}</a></div></div><LeadForm compact /></section>
+                <section className="contact-section" id="contact"><div className="contact-copy"><span className="eyebrow light-eyebrow">READY WHEN YOU ARE</span><h2>Let&apos;s put your<br /><em>next lead</em> in motion.</h2><p>Tell us where you want to go. We&apos;ll help you map the smartest route there.</p><div className="contact-details"><a href={whatsappLink} target='_blank'>{whatsappIcon} {phone}</a><a href={`mailto:${email}`}><Mail size={17} /> {email}</a></div></div><LeadForm compact /></section>
             </main>
 
-            <footer className="site-footer"><div className="footer-main"><div><Logo2 /><p>Performance marketing for businesses ready to grow with intent.</p></div><div className="footer-links"><div><strong>Explore</strong><a href="#services">What we do</a><a href="#process">Our process</a><a href="#campaigns">Campaign types</a></div><div><strong>Connect</strong><a href={`tel:${phoneHref}`}>{phone}</a><a href={`mailto:${email}`}>{email}</a><a href="#contact">Start a conversation</a></div></div></div><div className="footer-bottom"><span>© 2026 Absolute Ranking. All rights reserved.</span><span>Built for better leads <span className="footer-dot" /></span></div></footer>
+            <footer className="site-footer"><div className="footer-main"><div><Logo2 /><p>Performance marketing for businesses ready to grow with intent.</p></div><div className="footer-links"><div><strong>Explore</strong><a href="#services">What we do</a><a href="#process">Our process</a><a href="#campaigns">Campaign types</a></div><div><strong>Connect</strong><a href={whatsappLink} target='_blank'>{phone}</a><a href={`mailto:${email}`}>{email}</a><a href="#contact">Start a conversation</a></div></div></div><div className="footer-bottom"><span>© 2026 Absolute Ranking. All rights reserved.</span><span>Built for better leads <span className="footer-dot" /></span></div></footer>
         </div>
     );
 }
