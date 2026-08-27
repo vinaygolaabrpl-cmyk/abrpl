@@ -1,0 +1,48 @@
+HOW TO SHOW https://absoluteranking.com/ppc/services/google-ads-management/
+WITHOUT CREATING THOSE NESTED FOLDERS ON THE SERVER
+=====================================================================
+
+You don't need public_html/ppc/services/google-ads-management/ to
+physically exist. Instead:
+
+1. Upload this app's build output into ONE real folder anywhere in
+   public_html - for example:
+
+       public_html/ppc-google-ads-app/
+           index.html
+           assets/...
+           contact.php
+           config.php      <- copy from config.example.php, fill in real password
+           .htaccess       <- already included (forces index.html as default doc)
+
+   (You can name this folder whatever you like - just update the
+   folder name in step 2 below to match.)
+
+2. Open the .htaccess file in your WordPress root (public_html/.htaccess)
+   and add the block below ABOVE the "# BEGIN WordPress" section
+   (rewrite rules are read top to bottom, and WordPress's own catch-all
+   rule would otherwise take over first):
+
+-----------------------------------------------------------------
+# BEGIN Absolute Ranking - Google Ads landing page (custom URL, no real folder)
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^ppc/services/google-ads-management/?$ /ppc-google-ads-app/index.html [L]
+RewriteRule ^ppc/services/google-ads-management/(.+)$ /ppc-google-ads-app/$1 [L]
+</IfModule>
+# END Absolute Ranking - Google Ads landing page
+-----------------------------------------------------------------
+
+   Replace "ppc-google-ads-app" in both lines with whatever folder
+   name you actually used in step 1.
+
+That's it. Visiting https://absoluteranking.com/ppc/services/google-ads-management/
+in a browser will show that URL in the address bar, while Apache quietly
+serves the files from public_html/ppc-google-ads-app/ behind the scenes -
+including the JS/CSS assets and contact.php, since the app's
+vite.config.ts base and the contact form's endpoint are already set to
+"/ppc/services/google-ads-management/..." and don't need to change.
+
+Nothing else in this project needs to change for this - not
+vite.config.ts, not App.tsx. Just the folder you upload to, and this
+one .htaccess block in the WordPress root.

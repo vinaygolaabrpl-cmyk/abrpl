@@ -1,0 +1,11 @@
+# This folder is deployed inside an existing WordPress install
+# (public_html/ppc/services/google-ads-management/). WordPress's root
+# .htaccess only rewrites requests that don't match a real file or folder,
+# so it will not interfere with the files here - this .htaccess just makes
+# sure index.html is served as the default document for this folder on
+# every hosting configuration.
+
+DirectoryIndex index.html
+
+# Prevent directory listing if DirectoryIndex ever fails to resolve.
+Options -Indexes
