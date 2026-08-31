@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useRef, useState } from 'react';
-import { Activity, AlertCircle, ArrowRight, ArrowUpRight, BarChart3, BadgeCheck, BrainCircuit, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, CircleDollarSign, ClipboardCheck, FileText, FlaskConical, Gauge, Globe2, Headphones, Layers3, LineChart, Mail, MapPin, Megaphone, Menu, MousePointerClick, PenTool, Phone, PieChart, Search, ShieldCheck, ShoppingBag, SlidersHorizontal, Sparkles, Target, TrendingUp, Users, WalletCards, X, Youtube, Zap, } from 'lucide-react';
+import { Activity, AlertCircle, AlertTriangle, ArrowRight, ArrowUpRight, BarChart3, BadgeCheck, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, CircleDollarSign, Cpu, Gauge, Headphones, Layers3, LineChart, Mail, Megaphone, Menu, MousePointerClick, PenTool, Phone, PieChart, Route, Search, ShieldCheck, ShoppingBag, Sparkles, Target, TrendingDown, TrendingUp, Unlock, Users, WalletCards, X, Youtube, Zap, } from 'lucide-react';
 import Swal from 'sweetalert2';
 import logo from '@/assets/images/ab_Logo.png'
 import footerlogo from '@/assets/images/ab_Logo_w.png'
@@ -63,21 +63,27 @@ function validateLead(values: LeadFormValues): LeadFormErrors {
 }
 
 const benefits = [
-    { icon: Zap, title: 'Instant visibility', text: 'Show up at the exact moment high-intent customers search for what you offer.' },
-    { icon: Target, title: 'High-intent leads', text: 'Reach people already looking for a solution, not passive browsers.' },
-    { icon: BarChart3, title: 'Measurable results', text: 'Track every click, call, enquiry and conversion with total clarity.' },
-    { icon: SlidersHorizontal, title: 'Flexible budget control', text: 'Start with a sensible budget and scale the campaigns that earn more.' },
+    { icon: AlertTriangle, title: 'Eliminating Budget Waste', text: 'Misconfigured broad match keywords and improper negative keyword lists routinely waste 20–40% of ad budgets on unqualified clicks.' },
+    { icon: Cpu, title: 'Mastering Smart Bidding & AI', text: 'Algorithmic bidding needs accurate first-party conversion data to train correctly; poor setup leads to misguided machine-learning decisions.' },
+    { icon: TrendingUp, title: 'Overcoming Rising CPCs', text: 'In competitive markets, maintaining profitable acquisition costs requires hyper-targeted ad relevance, superior Quality Scores, and high-converting landing pages.' },
+    { icon: Route, title: 'Navigating Complex Attribution', text: 'Multi-touch buyer journeys require server-side conversion tracking and accurate analytics to measure actual pipeline revenue, not just clicks.' },
+];
+
+const advantages = [
+    { icon: TrendingDown, title: 'Lower Customer Acquisition Costs (CAC)', text: 'Continuous bid tuning, ad relevance improvements, and high Quality Scores reduce your cost-per-click, maximizing pipeline volume per ad dollar spent.' },
+    { icon: Users, title: 'Higher-Intent Lead Quality', text: 'By replacing vanity traffic metrics with strict audience qualification, negative keyword gating, and conversion filters, we send sales-ready prospects straight to your pipeline.' },
+    { icon: Zap, title: 'Rapid Speed-to-Market', text: 'Launch optimized, fully tracked campaigns within days — not weeks — enabling immediate capture of existing market demand.' },
+    { icon: PieChart, title: 'Complete Spend Transparency', text: 'Maintain full visibility and direct ownership of your ad accounts, billing, and performance metrics with zero hidden agency markups.' },
+    { icon: BarChart3, title: 'Scalable Revenue Infrastructure', text: 'As campaigns hit profitability benchmarks, our structured account architecture allows for predictable, frictionless budget scaling without diminishing returns.' },
 ];
 
 const services = [
-    { number: '01', icon: Search, title: 'Keyword research & optimization', text: 'Uncover high-intent search terms and build a keyword strategy that cuts wasted spend.' },
-    { number: '02', icon: Users, title: 'Audience & location targeting', text: 'Reach the right people by location, intent, device, demographics and behaviour.' },
-    { number: '03', icon: BrainCircuit, title: 'Competitor & industry analysis', text: 'Find gaps in your market and opportunities to make your ads more competitive.' },
-    { number: '04', icon: PenTool, title: 'High-converting ad copy', text: 'Write relevant, persuasive messaging that earns attention and quality clicks.' },
-    { number: '05', icon: FlaskConical, title: 'Ad testing & optimization', text: 'Keep testing headlines, assets and landing pages to improve performance over time.' },
-    { number: '06', icon: ClipboardCheck, title: 'Conversion tracking', text: 'Measure calls, forms, purchases and every action that matters to your business.' },
-    { number: '07', icon: WalletCards, title: 'Bid & budget management', text: 'Put every rupee to work with smarter bidding and disciplined budget control.' },
-    { number: '08', icon: FileText, title: 'Performance reporting', text: 'Get clear monthly reporting with the insight to make confident next moves.' },
+    { number: '01', icon: Search, title: 'Search Campaign Management', text: 'High-intent keyword capture, hyper-segmented ad groups, custom ad extensions, and aggressive negative keyword filtering.' },
+    { number: '02', icon: Layers3, title: 'Display & Remarketing Ads', text: 'Audience segmentation, strategic remarketing, dynamic banner placements, and brand protection across the Google Display Network.' },
+    { number: '03', icon: WalletCards, title: 'Bid & Budget Optimization', text: 'Target CPA (tCPA), Target ROAS (tROAS), and portfolio bid management tuned to profit margins rather than simple conversion volume.' },
+    { number: '04', icon: PenTool, title: 'Ad Copywriting & A/B Testing', text: 'High-converting, benefit-driven ad copy, responsive search ads (RSAs), and continuous testing of headlines, hooks, and CTAs.' },
+    { number: '05', icon: LineChart, title: 'Conversion Tracking & Analytics', text: 'Google Tag Manager implementation, GA4 event setup, offline conversion imports, and full-funnel revenue attribution.' },
+    { number: '06', icon: MousePointerClick, title: 'Landing Page CRO Consulting', text: 'Message matching, page load optimization, and conversion rate optimization (CRO) to maximize form fills and phone calls.' },
 ];
 
 const campaigns = [
@@ -90,13 +96,10 @@ const campaigns = [
 ];
 
 const faqs = [
-    ['What is Google Ads management?', 'Google Ads management is the ongoing strategy, setup, optimization and reporting that helps your campaigns generate more qualified enquiries from your budget.'],
-    ['How does PPC advertising work?', 'You bid to appear for relevant searches. You pay when someone clicks, while our team works to improve relevance, conversion rates and return on spend.'],
-    ['How long does it take to see results?', 'Your ads can start generating traffic quickly. We use the first weeks to gather data, then refine targeting and creative around what is converting.'],
-    ['How much should I spend on Google Ads?', 'The right budget depends on your market, goals and competition. We will recommend a practical starting point after reviewing your business.'],
-    ['Do you provide conversion tracking?', 'Yes. We set up tracking for the actions that matter, including form submissions, calls and other high-value enquiries.'],
-    ['Will I have access to my Google Ads account?', 'Yes. Your account and data remain transparent and accessible to you throughout the engagement.'],
-    ['How do I get started?', 'Share a few details through the form or call us directly. We will review your goals and come back with a tailored PPC plan.'],
+    ['How quickly can we expect results from Google Ads?', 'Unlike organic SEO, Google Ads generates targeted traffic immediately after campaign launch. Optimization for peak conversion efficiency and calibrated algorithm learning typically stabilizes within 30 to 60 days.'],
+    ['Who owns the Google Ads account and campaign data?', 'You retain 100% ownership of your Google Ads account, data, and intellectual property. If you ever decide to pause services, your assets and campaign history remain entirely yours.'],
+    ['How do you determine our required ad budget?', 'We evaluate average industry Cost Per Click (CPC), competitive density, and your target lead volume to recommend an optimal starting budget that yields statistically significant data while maintaining positive unit economics.'],
+    ['How do you prevent junk leads and click fraud?', 'We combine proactive IP exclusions, strict geographic targeting parameters, rigorous negative keyword lists, and invalid-click protection protocols to preserve your ad budget for genuine prospects.'],
 ];
 
 function RefreshCwIcon(props: { size?: number; strokeWidth?: number }) {
@@ -269,7 +272,7 @@ function LeadForm({ compact = false }: { compact?: boolean }) {
                     {errors.name && <span id="lead-error-name" className="field-error"><AlertCircle size={12} /> {errors.name}</span>}
                 </label>
                 <label className={errors.email ? 'has-error' : ''}>
-                    <span>Business email</span>
+                    <span>Business Email</span>
                     <input
                         type="email"
                         name="email"
@@ -282,7 +285,7 @@ function LeadForm({ compact = false }: { compact?: boolean }) {
                     {errors.email && <span id="lead-error-email" className="field-error"><AlertCircle size={12} /> {errors.email}</span>}
                 </label>
                 <label className={errors.phone ? 'has-error' : ''}>
-                    <span>Phone number</span>
+                    <span>Phone Number</span>
                     <input
                         type="tel"
                         name="phone"
@@ -310,15 +313,15 @@ function LeadForm({ compact = false }: { compact?: boolean }) {
                     <span>Monthly ad budget</span>
                     <select name="budget" value={values.budget} onChange={(e) => updateField('budget', e.target.value)}>
                         <option value="" disabled>Select a range</option>
-                        <option>Under ₹50,000</option>
-                        <option>₹50,000 – ₹1,00,000</option>
-                        <option>₹1,00,000 – ₹5,00,000</option>
-                        <option>₹5,00,000+</option>
+                        <option>Under $2,500</option>
+                        <option>$2,500 – $5,000</option>
+                        <option>$5,000 – $15,000</option>
+                        <option>$15,000+</option>
                     </select>
                 </label>
             </div>
             <button className="button button-primary form-submit" type="submit" disabled={submitting} aria-busy={submitting}>
-                {submitting ? 'Sending…' : 'Get my free PPC proposal'} <ArrowUpRight size={17} />
+                {submitting ? 'Sending…' : 'Get My Custom Growth Proposal'} <ArrowUpRight size={17} />
             </button>
             <p className="form-note"><ShieldCheck size={14} /> Your information stays private. No pressure, no spam.</p>
         </form>
@@ -354,10 +357,10 @@ function App() {
                 <section className="hero section-grid">
                     <div className="hero-copy">
                         <div className="eyebrow"><span className="eyebrow-dot" /> GOOGLE ADS & PPC MANAGEMENT</div>
-                        <h1>Turn search intent into <em>real growth.</em></h1>
-                        <p className="hero-lede">Professionally managed Google Ads campaigns that attract high-intent customers, create quality leads and make every click work harder for your business.</p>
-                        <div className="hero-actions"><a className="button button-primary" href="#contact">Get free consultation <ArrowUpRight size={17} /></a><a className="button button-outline" href={whatsappLink} target='_blank'>{whatsappIcon} Call {phone}</a></div>
-                        <div className="trust-row"><span><CheckCircle2 size={16} /> Data-led strategy</span><span><CheckCircle2 size={16} /> Transparent reporting</span><span><CheckCircle2 size={16} /> ROI-minded execution</span></div>
+                        <h1>Maximize ROI &amp; Scale Revenue with <em> Data-Driven Google Ads Management</em></h1>
+                        <p className="hero-lede">Stop burning ad budget on low-intent clicks. Absolute Ranking builds, optimizes, and scales precision PPC campaigns that consistently deliver qualified leads and measurable profit.</p>
+                        <div className="hero-actions"><a className="button button-primary" href="#contact">Get My Free PPC Audit <ArrowUpRight size={17} /></a><a className="button button-outline" href={whatsappLink} target='_blank'>{whatsappIcon} Request a Custom Proposal</a></div>
+                        <div className="trust-row"><span><CheckCircle2 size={16} /> Certified Google Partner Agency</span><span><CheckCircle2 size={16} /> $50M+ Ad Spend Managed</span><span><CheckCircle2 size={16} /> 340% Average Client ROI Growth</span><span><CheckCircle2 size={16} /> Transparent, Real-Time Reporting</span></div>
                     </div>
                     <div className="hero-visual">
                         <div className="visual-orbit orbit-one" /><div className="visual-orbit orbit-two" /><div className="visual-glow" />
@@ -376,13 +379,19 @@ function App() {
 
                 <section className="stats-band"><div className="stats-intro"><span className="eyebrow">THE ABSOLUTE DIFFERENCE</span><h2>Built around outcomes, not vanity metrics.</h2></div><div className="stat"><strong><Counter value={10} /><span>+</span></strong><span>years in performance marketing</span></div><div className="stat"><strong><Counter value={1000} /><span>+</span></strong><span>projects completed</span></div><div className="stat"><strong><Counter value={85} /><span>+</span></strong><span>marketing specialists</span></div></section>
 
-                <section className="section light-section why-section"><div className="section-heading centered"><span className="eyebrow">WHY GOOGLE ADS</span><h2>Be there when your next<br /><em>customer is looking.</em></h2><p>Google Ads puts your business in front of high-intent people at the most valuable moment: when they are searching for a solution.</p></div><div className="benefit-grid">{benefits.map(({ icon: Icon, title, text }) => <article className="benefit-card" key={title}><span className="icon-box"><Icon size={21} /></span><h3>{title}</h3><p>{text}</p><a href="#contact">Explore benefit <ArrowRight size={15} /></a></article>)}</div></section>
+                <section className="section light-section intro-section"><div className="section-heading centered"><span className="eyebrow">THE CHALLENGE</span><h2>Why profitable paid search<br />demands <em>precision.</em></h2></div><div className="intro-copy"><p>Reaching high-intent prospects at the exact moment they search for your solutions is the core strength of Google Ads. However, managing campaigns in an increasingly competitive, automated auction requires more than basic keyword matching.</p><p>Without strategic oversight, ad spend quickly drains into irrelevant queries, inefficient smart bidding algorithms, and unoptimized landing pages. Absolute Ranking provides end-to-end Google Ads management that prioritizes revenue generation over vanity metrics, turning your paid search into a predictable acquisition engine.</p></div></section>
 
-                <section className="section services-section" id="services"><div className="section-heading section-heading-split"><div><span className="eyebrow">WHAT WE DO</span><h2>Everything your campaigns need to <em>perform better.</em></h2></div><p>From the first keyword to the latest report, we manage the details that turn paid search into a dependable growth channel.</p></div><div className="services-grid">{services.map(({ number, icon: Icon, title, text }) => <article className="service-card" key={number}><div className="service-top"><span className="service-number">{number}</span><Icon size={22} /></div><h3>{title}</h3><p>{text}</p><a href="#contact" aria-label={`Learn more about ${title}`}><ArrowUpRight size={17} /></a></article>)}</div></section>
+                <section className="section light-section why-section"><div className="section-heading centered"><span className="eyebrow">WHY IT MATTERS</span><h2>Why businesses need professional<br /><em>Google Ads management.</em></h2><p>Running high-performance Google Ads campaigns requires continuous strategic adjustments.</p></div><div className="benefit-grid">{benefits.map(({ icon: Icon, title, text }) => <article className="benefit-card" key={title}><span className="icon-box"><Icon size={21} /></span><h3>{title}</h3><p>{text}</p><a href="#contact">Explore benefit <ArrowRight size={15} /></a></article>)}</div></section>
 
-                <section className="section process-section" id="process"><div className="section-heading centered"><span className="eyebrow">HOW IT WORKS</span><h2>A clearer path from click<br />to <em>customer.</em></h2></div><div className="process-line">{[['01', 'Understand', 'Your goals, audience and growth targets.'], ['02', 'Research', 'Keywords, competitors and opportunity.'], ['03', 'Build', 'Campaigns designed for intent and action.'], ['04', 'Optimize', 'Tracking, testing and smarter decisions.'], ['05', 'Scale', 'More of what works, less wasted spend.']].map(([number, title, text], index) => <div className="process-step" key={number}><span className="process-dot">{number}</span><div><h3>{title}</h3><p>{text}</p></div>{index < 4 && <ArrowRight className="process-arrow" size={18} />}</div>)}</div></section>
+                <section className="section services-section" id="services"><div className="section-heading section-heading-split"><div><span className="eyebrow">WHAT WE DO</span><h2>Our comprehensive Google Ads <em>management services.</em></h2></div><p>Six execution pillars working together to turn ad spend into predictable, trackable revenue.</p></div><div className="services-grid">{services.map(({ number, icon: Icon, title, text }) => <article className="service-card" key={number}><div className="service-top"><span className="service-number">{number}</span><Icon size={22} /></div><h3>{title}</h3><p>{text}</p><a href="#contact" aria-label={`Learn more about ${title}`}><ArrowUpRight size={17} /></a></article>)}</div></section>
 
-                <section className="dark-section choice-section"><div className="section-heading centered"><span className="eyebrow light-eyebrow">WHY ABSOLUTE RANKING</span><h2>Sharper thinking.<br /><em>Stronger outcomes.</em></h2><p>We combine strategic clarity with day-to-day campaign craft, so your advertising keeps getting more useful.</p></div><div className="choice-grid">{[['Customized strategy', 'A plan built around your business, market and goals.', Target], ['Transparent reporting', 'Clear answers about where your budget is going.', PieChart], ['Experienced specialists', 'Hands-on support from people who know paid search.', ShieldCheck], ['Continuous optimization', 'Active testing and iteration, not set-and-forget.', TrendingUp], ['ROI-focused mindset', 'We care about business results, not empty impressions.', CircleDollarSign], ['Dedicated support', 'Straight answers and a team that stays close to your goals.', Headphones]].map(([title, text, Icon]) => <div className="choice-item" key={title as string}><span className="choice-icon"><Icon size={19} /></span><div><h3>{title as string}</h3><p>{text as string}</p></div></div>)}</div></section>
+                <section className="section benefits-alt-section" id="benefits"><div className="section-heading centered"><span className="eyebrow">THE ABSOLUTE ADVANTAGE</span><h2>Benefits of working<br />with <em>Absolute Ranking.</em></h2><p>Here&apos;s what changes once your Google Ads account is in expert hands.</p></div><div className="benefits-alt-grid">{advantages.map(({ icon: Icon, title, text }) => <article className="benefit-card" key={title}><span className="icon-box"><Icon size={21} /></span><h3>{title}</h3><p>{text}</p><a href="#contact">Explore benefit <ArrowRight size={15} /></a></article>)}</div></section>
+
+                <section className="section process-section" id="process"><div className="section-heading centered"><span className="eyebrow">HOW IT WORKS</span><h2>Our strategic 4-step<br /><em>PPC management process.</em></h2></div><div className="process-line">{[['01', 'Discovery & Account Audit', 'We dissect your existing account history, competitive landscape, target audience, and profit margins to uncover immediate cost-saving opportunities and growth targets.'], ['02', 'Campaign Architecture & Setup', 'We structure targeted campaigns with zero wasted spend, develop persuasive ad copy, set up conversion tracking, and align landing page user experiences.'], ['03', 'Continuous Testing & Bidding Calibration', 'We analyze real search-term reports daily, prune negative keywords, test creative variations, and calibrate automated bidding signals for optimal efficiency.'], ['04', 'Transparent Reporting & Scaling', 'Access 24/7 real-time custom dashboards alongside dedicated monthly strategy calls focused on lowering Cost Per Acquisition (CPA) and scaling spend profitably.']].map(([number, title, text], index) => <div className="process-step" key={number}><span className="process-dot">{number}</span><div><h3>{title}</h3><p>{text}</p></div>{index < 3 && <ArrowRight className="process-arrow" size={18} />}</div>)}</div></section>
+
+                <section className="dark-section choice-section"><div className="section-heading centered"><span className="eyebrow light-eyebrow">WHY ABSOLUTE RANKING</span><h2>Why partner with<br /><em>Absolute Ranking?</em></h2><p>We combine strategic clarity with day-to-day campaign craft, so your advertising keeps getting more useful.</p></div><div className="choice-grid">{[['Performance-First Philosophy', 'We measure success by your bottom-line return, pipeline value, and qualified leads — not superficial click counts.', Target], ['Zero Wasted Ad Spend', 'Rigorous negative keyword architecture and audience exclusion strategies ensure every dollar targets high-intent buyers.', ShieldCheck], ['Proactive Account Management', 'Your account receives direct management and weekly optimizations from senior PPC specialists, not junior interns.', Headphones], ['No Long-Term Lock-Ins', 'We earn your business every month through transparent work, clear communication, and verifiable results.', Unlock]].map(([title, text, Icon]) => <div className="choice-item" key={title as string}><span className="choice-icon"><Icon size={19} /></span><div><h3>{title as string}</h3><p>{text as string}</p></div></div>)}</div></section>
+
+                <section className="cta-banner"><div className="cta-banner-inner"><Megaphone size={30} /><h2>Is your current ad spend<br />producing <em>real revenue?</em></h2><p>Let our senior PPC strategists perform a deep-dive audit of your Google Ads account to uncover hidden waste, missed keyword opportunities, and instant conversion wins.</p><a className="button button-primary" href="#contact">Claim Your Free 20-Point PPC Audit <ArrowUpRight size={17} /></a></div></section>
 
                 <section className="section performance-section"><div className="performance-copy"><span className="eyebrow">PERFORMANCE, MADE VISIBLE</span><h2>Track what matters.<br /><em>Optimize what works.</em></h2><p>Good PPC management turns a lot of data into a few clear decisions. We connect campaign performance to the actions that move your business forward.</p><div className="check-list"><span><CheckCircle2 size={17} /> Live performance visibility</span><span><CheckCircle2 size={17} /> Conversion-first optimization</span><span><CheckCircle2 size={17} /> Monthly strategy reporting</span></div><a className="text-button" href="#contact">See what we could improve <ArrowRight size={16} /></a></div><div className="performance-visual"><div className="performance-header"><span><span className="live-dot" /> Live account view</span><span>Last 30 days <ChevronDown size={13} /></span></div><div className="performance-main"><div><small>REVENUE INFLUENCED</small><strong>₹12,84,920</strong><span className="positive"><TrendingUp size={13} /> 24.8%</span></div><div className="bars"><span style={{ height: '35%' }} /><span style={{ height: '48%' }} /><span style={{ height: '43%' }} /><span style={{ height: '61%' }} /><span style={{ height: '55%' }} /><span style={{ height: '76%' }} /><span style={{ height: '69%' }} /><span style={{ height: '91%' }} /><span style={{ height: '82%' }} /><span style={{ height: '100%' }} /></div><div className="performance-stats"><span><small>CTR</small><b>6.42%</b></span><span><small>LEADS</small><b>1,286</b></span><span><small>ROAS</small><b>4.8x</b></span></div></div></div></section>
 
@@ -392,7 +401,7 @@ function App() {
 
                 <section className="section faq-section" id="faq"><div className="section-heading"><span className="eyebrow">GOOD QUESTIONS</span><h2>Everything you need<br />to know.</h2><p>Still curious? Our specialists are only a call away.</p><a className="text-button" href={`mailto:${email}`}>Ask us directly <ArrowRight size={16} /></a></div><div className="faq-list">{faqs.map(([question, answer], index) => <div className={`faq-item ${openFaq === index ? 'faq-open' : ''}`} key={question}><button onClick={() => setOpenFaq(openFaq === index ? -1 : index)}><span>{question}</span><ChevronDown size={18} /></button>{openFaq === index && <p>{answer}</p>}</div>)}</div></section>
 
-                <section className="contact-section" id="contact"><div className="contact-copy"><span className="eyebrow light-eyebrow">READY WHEN YOU ARE</span><h2>Let&apos;s put your<br /><em>next lead</em> in motion.</h2><p>Tell us where you want to go. We&apos;ll help you map the smartest route there.</p><div className="contact-details"><a href={whatsappLink} target='_blank'>{whatsappIcon} {phone}</a><a href={`mailto:${email}`}><Mail size={17} /> {email}</a></div></div><LeadForm compact /></section>
+                <section className="contact-section" id="contact"><div className="contact-copy"><span className="eyebrow light-eyebrow">READY WHEN YOU ARE</span><h2>Ready to scale your lead<br />generation with <em>profitable Google Ads?</em></h2><p>Partner with Absolute Ranking and turn paid search into your highest-performing customer acquisition channel.</p><div className="contact-details"><a href={whatsappLink} target='_blank'>{whatsappIcon} {phone}</a><a href={`mailto:${email}`}><Mail size={17} /> {email}</a></div></div><LeadForm compact /></section>
             </main>
 
             <footer className="site-footer"><div className="footer-main"><div><Logo2 /><p>Performance marketing for businesses ready to grow with intent.</p></div><div className="footer-links"><div><strong>Explore</strong><a href="#services">What we do</a><a href="#process">Our process</a><a href="#campaigns">Campaign types</a></div><div><strong>Connect</strong><a href={whatsappLink} target='_blank'>{phone}</a><a href={`mailto:${email}`}>{email}</a><a href="#contact">Start a conversation</a></div></div></div><div className="footer-bottom"><span>© 2026 Absolute Ranking. All rights reserved.</span><span>Built for better leads <span className="footer-dot" /></span></div></footer>
