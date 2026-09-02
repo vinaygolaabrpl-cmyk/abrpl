@@ -65,7 +65,7 @@ $smtpPort    = $smtpPort    ?: (getenv('SMTP_PORT') ?: 465);
 $smtpSecure  = $smtpSecure  ?: (getenv('SMTP_SECURE') ?: 'ssl');
 $smtpUser    = $smtpUser    ?: getenv('SMTP_USER');
 $smtpPass    = $smtpPass    ?: getenv('SMTP_PASS');
-$leadToEmail = $leadToEmail ?: (getenv('LEAD_TO_EMAIL') ?: 'vinaygola.abrpl@gmail.com');
+$leadToEmail = $leadToEmail ?: (getenv('LEAD_TO_EMAIL') ?: 'rahul@absoluteranking.com');
 
 if (!$smtpUser || !$smtpPass) {
     // Credentials aren't configured on the server yet - fail loudly in the logs,
